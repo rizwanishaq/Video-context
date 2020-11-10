@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import Buttons from "./components/Buttons";
+import CanvasFeed from "./components/CanvasFeed";
+import DisplayResponse from "./components/DisplayResponse";
+import VideoFeed from "./components/VideoFeed";
+import WebSocketFeed from "./components/WebSocketFeed";
+import { AppContext } from "./contexts/appContext";
 
 function App() {
+  const { start } = AppContext();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {start && <VideoFeed />}
+      {start && <CanvasFeed />}
+      {start && <DisplayResponse />}
+      {start && <WebSocketFeed />}
+      <Buttons />
     </div>
   );
 }
