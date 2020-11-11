@@ -7,14 +7,18 @@ const DisplayResponse = () => {
 
   return (
     <Row>
-      <img
-        src={`data:image/jpeg;base64,${responseData.image}`}
-        alt="response_Image"
-      />
-      <img
-        src={`data:image/jpeg;base64,${responseData.o_image}`}
-        alt="response_o_Image"
-      />
+      {responseData && (
+        <img
+          src={`data:image/jpeg;base64,${responseData.image}`}
+          alt="response_Image"
+        />
+      )}
+      {responseData && (
+        <img
+          src={`data:image/jpeg;base64,${responseData.o_image}`}
+          alt="response_o_Image"
+        />
+      )}
     </Row>
   );
 };

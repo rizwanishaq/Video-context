@@ -56,10 +56,17 @@ const VideoContextProvider = ({ children }) => {
       return;
     }
     if (start) {
-      navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-        videoEl.current.srcObject = stream;
-        videoEl.current.play();
-      });
+      navigator.mediaDevices
+        .getUserMedia({
+          video: {
+            width: 256,
+            height: 256,
+          },
+        })
+        .then((stream) => {
+          videoEl.current.srcObject = stream;
+          videoEl.current.play();
+        });
     }
   }, [videoEl, start]);
 

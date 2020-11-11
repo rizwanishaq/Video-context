@@ -1,19 +1,24 @@
-import Buttons from "./components/Buttons";
 import CanvasFeed from "./components/CanvasFeed";
 import DisplayResponse from "./components/DisplayResponse";
 import VideoFeed from "./components/VideoFeed";
 import { AppContext } from "./contexts/appContext";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
+import Header from "./components/Header";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   const { start } = AppContext();
   return (
-    <Container>
-      {start && <VideoFeed />}
-      {start && <CanvasFeed />}
-      {start && <DisplayResponse />}
-      <Buttons />
-    </Container>
+    <Router>
+      <Header />
+      <Container>
+        {start && <VideoFeed />}
+        <Row>
+          {start && <CanvasFeed />}
+          {start && <DisplayResponse />}
+        </Row>
+      </Container>
+    </Router>
   );
 }
 
