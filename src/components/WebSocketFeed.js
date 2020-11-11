@@ -10,7 +10,7 @@ const WebSocketFeed = () => {
       console.log("I am open");
     };
     websocketEl.current.onmessage = (event) => {
-      setResponseData(event.data);
+      setResponseData(JSON.parse(event.data));
     };
     websocketEl.current.onclose = () => {
       console.log("stream stopped");

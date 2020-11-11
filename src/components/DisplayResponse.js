@@ -6,8 +6,14 @@ const DisplayResponse = () => {
 
   return (
     <div>
-      {/* <img src={`data:image/jpeg;base64,${responseData}`} alt="responseImage" /> */}
-      <img src={`${responseData}`} alt="responseImage" />
+      <img
+        src={`data:image/jpeg;base64,${responseData.image}`}
+        alt="response_Image"
+      />
+      <img
+        src={`data:image/jpeg;base64,${responseData.o_image}`}
+        alt="response_o_Image"
+      />
     </div>
   );
 };
