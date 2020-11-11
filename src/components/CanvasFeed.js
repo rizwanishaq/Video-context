@@ -5,7 +5,7 @@ const CanvasFeed = () => {
   const { videoEl, canvas_ref, setRequestData, start } = AppContext();
 
   useEffect(() => {
-    if (start) {
+    if (start && videoEl) {
       const timer = setInterval(() => {
         canvas_ref.current.width = videoEl.current.videoWidth;
         canvas_ref.current.height = videoEl.current.videoHeight;

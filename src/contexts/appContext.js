@@ -21,6 +21,31 @@ const VideoContextProvider = ({ children }) => {
   const canvas_ref = useRef(undefined);
 
   useEffect(() => {
+    if (!websocketEl) return;
+    if (start && videoEl) {
+      websocketEl.current = new WebSocket("ws://127.0.0.1:5000");
+      websocketEl.current.onopen = () => {
+        console.log("I am open");
+      };
+      websocketEl.current.onmessage = (event) => {
+        setResponseData(JSON.parse(event.data));
+      };
+      websocketEl.current.onclose = () => {
+        console.log("stream stopped");
+      };
+      websocketEl.current.onerror = (e) => {
+        console.log(`Stream stopped due to error ${e}`);
+      };
+
+      return () => {
+        websocketEl.current.close();
+        websocketEl.current = null;
+        console.log("Closed");
+      };
+    }
+  }, [websocketEl, videoEl, start]);
+
+  useEffect(() => {
     if (websocketEl.current && requestData.length > 0 && start) {
       websocketEl.current.send(requestData);
     }
@@ -52,7 +77,6 @@ const VideoContextProvider = ({ children }) => {
     <VideoContext.Provider
       value={{
         videoEl,
-        websocketEl,
         canvas_ref,
         requestData,
         setRequestData,

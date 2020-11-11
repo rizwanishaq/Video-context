@@ -1,5 +1,6 @@
 import React from "react";
 import { AppContext } from "../contexts/appContext";
+import { Button } from "react-bootstrap";
 
 const Buttons = () => {
   const { start, setStart } = AppContext();
@@ -14,11 +15,13 @@ const Buttons = () => {
 
   return (
     <>
-      {start === false ? (
-        <button onClick={startHandler}>Press to start</button>
-      ) : (
-        <button onClick={stopHandler}>Press to stop</button>
-      )}
+      <Button variant="secondary" onClick={stopHandler} disabled={!start} block>
+        Press to stop
+      </Button>
+
+      <Button variant="secondary" onClick={startHandler} disabled={start} block>
+        Press to start
+      </Button>
     </>
   );
 };
